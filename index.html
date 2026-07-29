@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#27184a" />
+  <title>Enigma Nights | Riddle Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="star-field" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="hero glass-card">
+      <div class="hero-copy">
+        <div class="eyebrow">✦ ENIGMA NIGHTS ✦</div>
+        <h1 id="mainTitle">Choose Your Language</h1>
+        <p id="mainSubtitle">Pick a language to begin your riddle challenge.</p>
+      </div>
+      <div class="hero-badge" aria-hidden="true">
+        <span class="orb orb-a">?</span>
+        <span class="orb orb-b">!</span>
+        <span class="orb orb-c">★</span>
+      </div>
+    </header>
+
+    <section id="languageScreen" class="screen active">
+      <div class="language-grid">
+        <button class="language-card glass-card" data-language="en">
+          <span class="language-icon">EN</span>
+          <span class="language-title">English</span>
+          <span class="language-note">Play riddles in English</span>
+        </button>
+        <button class="language-card glass-card" data-language="ar">
+          <span class="language-icon">ع</span>
+          <span class="language-title">العربية</span>
+          <span class="language-note">العب الألغاز باللغة العربية</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <div class="top-controls glass-card">
+        <div class="control-group">
+          <label id="timerLabel" for="timerSelect">Timer</label>
+          <select id="timerSelect">
+            <option value="0">No timer</option>
+            <option value="15">15 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="45">45 seconds</option>
+            <option value="60">60 seconds</option>
+            <option value="90">90 seconds</option>
+            <option value="120">2 minutes</option>
+          </select>
+        </div>
+
+        <div class="timer-panel" aria-live="polite">
+          <div id="timerRing" class="timer-ring">
+            <span id="timerDisplay">30</span>
+          </div>
+          <button id="startTimerBtn" class="button button-secondary">Start Timer</button>
+          <button id="resetTimerBtn" class="icon-button" aria-label="Reset timer">↻</button>
+        </div>
+
+        <div class="header-actions">
+          <button id="changeLanguageBtn" class="button button-ghost">Language</button>
+          <button id="restartBtn" class="button button-danger">Restart Game</button>
+        </div>
+      </div>
+
+      <div class="game-layout">
+        <aside class="teams-panel glass-card">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Scoreboard</span>
+              <h2 id="teamsTitle">Teams</h2>
+            </div>
+            <button id="addTeamBtn" class="icon-button big" title="Add team">＋</button>
+          </div>
+
+          <form id="teamForm" class="team-form">
+            <input id="teamNameInput" type="text" maxlength="24" placeholder="Team name" autocomplete="off" />
+            <button id="saveTeamBtn" class="button button-primary" type="submit">Add</button>
+          </form>
+
+          <div id="teamsList" class="teams-list"></div>
+        </aside>
+
+        <section class="riddle-zone">
+          <div class="round-status glass-card">
+            <span id="roundLabel">Round</span>
+            <strong id="roundCount">0 / 20</strong>
+            <span class="status-dot"></span>
+            <span id="remainingLabel">20 riddles remaining</span>
+          </div>
+
+          <div class="riddle-card glass-card">
+            <div class="card-label" id="riddleLabel">RIDDLE</div>
+            <div id="riddleText" class="riddle-text empty-state">
+              Press “New Riddle” to reveal your first challenge.
+            </div>
+          </div>
+
+          <div id="answerCard" class="answer-card glass-card locked">
+            <div class="answer-header">
+              <div class="card-label answer-label" id="answerLabel">ANSWER</div>
+              <span id="answerStatus">Hidden</span>
+            </div>
+            <div id="answerText" class="answer-text">••••••••••••</div>
+          </div>
+
+          <div class="riddle-actions glass-card">
+            <button id="newRiddleBtn" class="button button-primary button-large">
+              <span>✦</span>
+              <span id="newRiddleText">New Riddle</span>
+            </button>
+            <button id="showAnswerBtn" class="button button-secondary button-large" disabled>
+              <span>◉</span>
+              <span id="showAnswerText">Show Answer</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
